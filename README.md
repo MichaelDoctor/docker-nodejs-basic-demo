@@ -33,3 +33,9 @@ docker-compose up
 
 ## stop containers
 docker-compose down
+
+## push
+docker push mdoctor/fireship-docker-node
+
+## pull
+docker pull mdoctor/fireship-docker-node
