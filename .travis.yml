@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - 14
+services:
+  - docker
+
+before_install:
+  - docker build -t mdoctor/fireship-docker-node -f Dockerfile .
+
+script:
+  - docker run mdoctor/fireship-docker-node npm run test
+
+after_success:
+  - docker build -t mdoctor/fireship-docker-node -f Dockerfile .
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  - docker push mdoctor/fireship-docker-node
